@@ -14,11 +14,14 @@
       font-size: 1.2em;
     }
     h1,h2{
-      font-size: 1.4em;
+      font-size: 1.3em;
       font-weight: bold;
     }
     .indent{
       text-align:center;
+    }
+    button>span {
+      color: green;
     }
   </style>
 </head>
@@ -33,9 +36,9 @@
       <div ng-controller="ToBuyController as tobuy">
         <div class="col-md-6">
           <h2 class="indent">Items To Buy</h2>
-          <table class=" table  table-responsive">
+          <table class=" table  table-hover">
             <tr ng-repeat="toBuyItems in tobuy.tobuyItems">
-              <td>{{$index+1}}</td>
+              <td><span class="glyphicon glyphicon-arrow-right"></span> </td>
               <td>Buy {{toBuyItems.quantity}} {{
                 toBuyItems.name}}</td>
               <td><button class="btn btn-default" ng-click="tobuy.boughtItems($index);"><span class="glyphicon glyphicon-ok"></span>
@@ -51,7 +54,7 @@
           <h2 class="indent">Already Bought Items</h2>
           <table class="table table-responsive col-md-4">
             <tr ng-repeat="boughtItem in boughtctr.boughtItem">
-              <td>{{$index+1}} .</td>
+              <td>{{$index+1}}</td>
               <td>Bought {{boughtItem.quantity}} {{boughtItem.name}}</td>
             </tr>
 
