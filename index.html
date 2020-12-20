@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Shopping List Check Off</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <script src="angular.min.js"></script>
+  <script src="app.js"></script>
+  <style>
+    .emptyMessage {
+      font-weight: bold;
+      color: red;
+      font-size: 1.2em;
+    }
+
+    li {
+      margin-bottom: 7px;
+      font-size: 1.2em;
+    }
+
+    li>button {
+      margin-left: 6px;
+    }
+
+    button>span {
+      color: green;
+    }
+  </style>
+</head>
+
+<body ng-app="ShoppingListCheckOff">
+  <div class="container">
+    <h1>Shopping List Check Off</h1>
+
+    <div class="row">
+
+      <!-- To Buy List -->
+      <div ng-controller="ToBuyController as tobuy">
+        <div class="col-md-6">
+          <h2>Items To Buy</h2>
+          <table class=" table  table-hover">
+            <tr ng-repeat="toBuyItems in tobuy.tobuyItems">
+              <td>Buy {{toBuyItems.quantity}} {{
+                toBuyItems.name}}</td>
+              <td><button class="btn btn-default" ng-click="tobuy.boughtItems($index);"><span class="glyphicon glyphicon-ok"></span>
+                  Bought</button></td>
+            </tr>
+          </table>
+          <div ng-if="tobuy.isToBuyItemEmpty();" class="emptyMessage">Everything is Bought!</div>
+        </div>
+      </div>
+      <!-- Already Bought List -->
+      <div ng-controller="AlreadyBoughtController as boughtctr">
+        <div class="col-md-6">
+          <h2>Already Bought Items</h2>
+          <table class="table table-responsive col-md-4">
+            <tr ng-repeat="boughtItem in boughtctr.boughtItem">
+              <td>{{$index+1}}</td>
+              <td>Bought {{boughtItem.quantity}} {{boughtItem.name}}</td>
+            </tr>
+
+          </table>
+          <div class="emptyMessage" ng-if="boughtctr.isBoughtEmpty();">Nothing bought Yet!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
