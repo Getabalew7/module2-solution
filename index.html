@@ -13,55 +13,50 @@
       color: red;
       font-size: 1.2em;
     }
-
-    li {
-      margin-bottom: 7px;
-      font-size: 1.2em;
+    h1,h2{
+      font-size: 1.4em;
+      font-weight: bold;
     }
-
-    li>button {
-      margin-left: 6px;
-    }
-
-    button>span {
-      color: green;
+    .indent{
+      text-align:center;
     }
   </style>
 </head>
 
 <body ng-app="ShoppingListCheckOff">
   <div class="container">
-    <h1>Shopping List Check Off</h1>
+    <h1 class="indent">Shopping List Check Off</h1>
 
     <div class="row">
 
       <!-- To Buy List -->
       <div ng-controller="ToBuyController as tobuy">
         <div class="col-md-6">
-          <h2>Items To Buy</h2>
-          <table class=" table  table-hover">
+          <h2 class="indent">Items To Buy</h2>
+          <table class=" table  table-responsive">
             <tr ng-repeat="toBuyItems in tobuy.tobuyItems">
+              <td>{{$index+1}}</td>
               <td>Buy {{toBuyItems.quantity}} {{
                 toBuyItems.name}}</td>
               <td><button class="btn btn-default" ng-click="tobuy.boughtItems($index);"><span class="glyphicon glyphicon-ok"></span>
                   Bought</button></td>
             </tr>
           </table>
-          <div ng-if="tobuy.isToBuyItemEmpty();" class="emptyMessage">Everything is Bought!</div>
+          <div ng-if="tobuy.isToBuyItemEmpty();" class="emptyMessage indent">Everything is Bought!</div>
         </div>
       </div>
       <!-- Already Bought List -->
       <div ng-controller="AlreadyBoughtController as boughtctr">
         <div class="col-md-6">
-          <h2>Already Bought Items</h2>
+          <h2 class="indent">Already Bought Items</h2>
           <table class="table table-responsive col-md-4">
             <tr ng-repeat="boughtItem in boughtctr.boughtItem">
-              <td>{{$index+1}}</td>
+              <td>{{$index+1}} .</td>
               <td>Bought {{boughtItem.quantity}} {{boughtItem.name}}</td>
             </tr>
 
           </table>
-          <div class="emptyMessage" ng-if="boughtctr.isBoughtEmpty();">Nothing bought Yet!</div>
+          <div class="emptyMessage indent" ng-if="boughtctr.isBoughtEmpty();">Nothing bought Yet!</div>
         </div>
       </div>
     </div>
